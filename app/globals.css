@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --font-inter: var(--font-inter);
+  --font-montserrat: var(--font-montserrat);
+  --font-hind-guntur: var(--font-hind-guntur);
+  --font-koulen: var(--font-koulen);
+  --font-ibm-plex-sans-hebrew: var(--font-ibm-plex-sans-hebrew);
+  --font-konkhmer: var(--font-konkhmer);
+}

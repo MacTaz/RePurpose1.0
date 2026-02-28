@@ -52,10 +52,6 @@ export async function signup(formData: FormData) {
     }
 
 
-    // Profile creation is now handled automatically by the SQL Trigger in Supabase
-    // that we set up earlier. We no longer need to do it manually in the code!
-
-
 
     revalidatePath("/home", "layout");
     redirect("/home");
@@ -81,11 +77,28 @@ export async function signInWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-            redirectTo: "http://localhost:3000/auth/confirm",
+            redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/confirm`,
             queryParams: {
                 access_type: "offline",
                 prompt: "consent",
             },
+        },
+    });
+
+    if (error) {
+        console.log(error);
+        redirect("/error");
+    }
+
+    redirect(data.url);
+}
+
+export async function signInWithFacebook() {
+    const supabase = await createClient();
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "facebook",
+        options: {
+            redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/confirm`,
         },
     });
 

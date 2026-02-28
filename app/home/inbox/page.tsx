@@ -19,7 +19,7 @@ const InboxPage = async () => {
         <div className="h-screen flex flex-col bg-white overflow-hidden font-inter">
             <Navbar role={role} />
             <main className="flex-1 flex overflow-hidden">
-                <InboxClient role={role} />
+                <InboxClient role={role} userId={user.id} />
             </main>
         </div>
     )

@@ -2,15 +2,12 @@
 
 import React, { useState } from 'react';
 
-// Dummy data for simulation (now empty as requested)
-const DUMMY_CONTACTS: any[] = [];
-
 interface InboxClientProps {
     role: 'donor' | 'organization';
 }
 
 const InboxClient = ({ role }: InboxClientProps) => {
-    const [selectedId, setSelectedId] = useState(DUMMY_CONTACTS[0]?.id || null);
+
 
     const isOrg = role === 'organization';
     const accentColor = isOrg ? 'bg-[#FF9248]' : 'bg-blue-600';
@@ -19,7 +16,6 @@ const InboxClient = ({ role }: InboxClientProps) => {
     const accentRing = isOrg ? 'ring-[#FF9248]/10' : 'ring-blue-600/10';
     const accentShadow = isOrg ? 'shadow-[#FF9248]/20' : 'shadow-blue-200';
 
-    const selectedContact = DUMMY_CONTACTS.find(c => c.id === selectedId);
 
     return (
         <div className="flex-1 flex overflow-hidden bg-[#F8F9FB] font-['Inter']">

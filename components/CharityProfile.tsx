@@ -183,6 +183,13 @@ const CharityProfile = ({ user }: CharityProfileProps) => {
                                             <p className="text-lg flex items-center"><span className="w-36 font-bold opacity-80 uppercase tracking-wider text-sm">Org Name</span> <span className="text-2xl font-semibold">{orgName || 'NA'}</span></p>
                                             <p className="text-lg flex items-center"><span className="w-36 font-bold opacity-80 uppercase tracking-wider text-sm">Email</span> <span className="text-xl font-medium">{user.email || 'NA'}</span></p>
 
+                                            <div className="text-lg flex items-start pt-1">
+                                                <span className="w-36 font-bold opacity-80 uppercase tracking-wider text-sm mt-1 shrink-0">Address</span>
+                                                <span className="text-xl font-medium">
+                                                    {[addressForm.line1, addressForm.line2, addressForm.city, addressForm.country, addressForm.zip].filter(Boolean).join(', ') || 'NA'}
+                                                </span>
+                                            </div>
+
                                             {/* Read-Only Toggles */}
                                             <div className="mt-8 pt-6 border-t border-[#5A2C10]/10 flex gap-12">
                                                 <div className="flex items-center space-x-4">
@@ -230,6 +237,23 @@ const CharityProfile = ({ user }: CharityProfileProps) => {
                                         </div>
                                     </div>
                                 )}
+                            </div>
+                        </div>
+
+                        {/* Contact Persons Read-Only Display */}
+                        <div className="w-full mt-8 animate-in fade-in duration-500">
+                            <p className="text-sm font-bold opacity-80 uppercase tracking-wider text-[#5A2C10] mb-3 ml-2">Contact Persons</p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {contacts.map((contact, index) => (
+                                    <div key={index} className="bg-white/50 backdrop-blur-md p-6 rounded-2xl shadow-xl shadow-black/5 border border-white/60 transition-all hover:bg-white/60">
+                                        <p className="text-xl font-bold text-[#5A2C10] mb-1">{contact.person || '...'}</p>
+                                        <p className="text-sm font-bold opacity-70 uppercase tracking-wider text-[#5A2C10] mb-4">{contact.role || '...'}</p>
+                                        <div className="space-y-2">
+                                            <p className="text-base font-medium text-[#5A2C10] flex items-start"><span className="opacity-70 w-16 shrink-0">Phone:</span> <span className="break-words">{contact.phone || '...'}</span></p>
+                                            <p className="text-base font-medium text-[#5A2C10] flex items-start"><span className="opacity-70 w-16 shrink-0">Hours:</span> <span className="break-words">{contact.hours || '...'}</span></p>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
